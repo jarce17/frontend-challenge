@@ -1,0 +1,32 @@
+.footer {
+    height: 6.25rem;
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(71 85 105);
+}
+
+div {
+    display: flex;
+    color: whitesmoke;
+    font-weight: 500;
+}
+
+p {
+    margin: 0;
+}
+
+.padding-right {
+    padding-right: 20px;
+}
+
+.padding-left {
+    padding-left: 20px;
+}
+
+.icon-style {
+    font-size: 1.25rem;
+}

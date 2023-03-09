@@ -1,0 +1,17 @@
+h1 {
+    margin: 1.25rem 0.625rem;
+}
+
+div {
+    margin: 0.625rem;
+}
+
+
+table {
+    width: 100%;
+}
+
+.mat-mdc-form-field {
+    font-size: 0.875rem;
+    width: 100%;
+}

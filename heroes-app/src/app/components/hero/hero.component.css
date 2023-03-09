@@ -1,0 +1,8 @@
+.container {
+    margin: 3.125rem auto;
+    width: 31.25rem;
+}
+
+form {
+    display: grid;
+}

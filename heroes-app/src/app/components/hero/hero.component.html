@@ -1,0 +1,21 @@
+<div class="container">
+    <h1>Datos sobre {{hero?.name || 'el nuevo heroe'}}</h1>
+    <div *ngIf="isLoading" class="loader-container">
+        <app-loader class="centered"></app-loader>
+    </div>
+    <form [hidden]="isLoading" [formGroup]="heroForm" (ngSubmit)="saveHeroe()">
+        <mat-form-field appearance="fill">
+            <mat-label>Nombre</mat-label>
+            <input matInput type="text" formControlName="name">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Superpoder</mat-label>
+            <input matInput type="text" formControlName="superpower">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Altura</mat-label>
+            <input type="number" matInput formControlName="height">
+        </mat-form-field>
+        <button mat-raised-button color="accent" [disabled]="heroForm.invalid">GUARDAR</button>
+    </form>
+</div>
