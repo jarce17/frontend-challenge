@@ -1,0 +1,9 @@
+<div class="container">
+    <h1>Listado de heroes</h1>
+    <div *ngIf="isLoading" class="loader-container">
+        <app-loader class="centered"></app-loader>
+    </div>
+    <div [hidden]="isLoading" class="mat-elevation-z8">
+        <app-table #heroesTable [heroes]="heroes" (onDeleteHero)="findAll()"></app-table>
+    </div>
+</div>

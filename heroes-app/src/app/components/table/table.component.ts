@@ -1,44 +1,32 @@
-import { Component, ViewChild } from '@angular/core'
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core'
 import { MatPaginator } from '@angular/material/paginator'
 import { MatTableDataSource } from '@angular/material/table'
-
+import { Hero } from 'src/app/models/hero'
+import { HeroesService } from 'src/app/services/heroes.service'
 import Swal from 'sweetalert2'
 
-import { HeroesService } from 'src/app/services/heroes.service'
-
-import { Hero } from '../../models/hero'
-
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-table',
+  templateUrl: './table.component.html',
+  styleUrls: ['./table.component.css']
 })
+export class TableComponent {
+  @Input() set heroes(array: Hero[]){
+    this._heroes=array
+    this.filteredHeroes = this._heroes
+    this.dataSource = new MatTableDataSource<Hero>(this._heroes)
+    this.dataSource.paginator = this.paginator
+  }
+  @Output() onDeleteHero = new EventEmitter<boolean>()
 
-export class HomeComponent {
-  heroes: Hero[] = []
+  _heroes: Hero[] = []
+  dataSource!: MatTableDataSource<Hero>
   filteredHeroes: Hero[] = []
   displayedColumns: string[] = ['name', 'height', 'superpower', 'actions']
-  dataSource = new MatTableDataSource<Hero>([])
-  isLoading = true
 
   @ViewChild(MatPaginator) paginator!: MatPaginator
 
-  constructor(private heroesService: HeroesService) {
-    this.findAll()
-  }
-
-  findAll() {
-    this.isLoading = true
-    this.heroesService.getHeroes().subscribe((response) => {
-      this.heroes = response
-      this.filteredHeroes = response
-      this.dataSource = new MatTableDataSource<Hero>(this.heroes)
-      this.dataSource.paginator = this.paginator
-      this.isLoading = false
-    })
-  }
-
-  ngOnInit(): void { }
+  constructor(private heroesService: HeroesService) { }
 
   applyFilter(event: Event) {
     this.heroesService.findHeroes(event, this.dataSource)
@@ -68,7 +56,7 @@ export class HomeComponent {
     return new Promise(() => {
       this.heroesService.deleteHero(hero.id).subscribe({
         complete: () => {
-          this.findAll()
+          this.onDeleteHero.emit(true)
           Swal.fire(
             '¡Eliminado!',
             'El heroe fue eliminado exitosamente.',
