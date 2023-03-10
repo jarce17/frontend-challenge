@@ -1,9 +1,13 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core'
-import { MatPaginator } from '@angular/material/paginator'
 import { MatTableDataSource } from '@angular/material/table'
-import { Hero } from 'src/app/models/hero'
-import { HeroesService } from 'src/app/services/heroes.service'
+
 import Swal from 'sweetalert2'
+
+import { PaginatorComponent } from '../paginator/paginator.component'
+
+import { HeroesService } from 'src/app/services/heroes.service'
+
+import { Hero } from 'src/app/models/hero'
 
 @Component({
   selector: 'app-table',
@@ -11,25 +15,27 @@ import Swal from 'sweetalert2'
   styleUrls: ['./table.component.css']
 })
 export class TableComponent {
+  @ViewChild(PaginatorComponent) paginatorTable!: PaginatorComponent
+
   @Input() set heroes(array: Hero[]){
     this._heroes=array
     this.filteredHeroes = this._heroes
     this.dataSource = new MatTableDataSource<Hero>(this._heroes)
-    this.dataSource.paginator = this.paginator
+    this.dataSource.paginator = this.paginatorTable.paginator
   }
   @Output() onDeleteHero = new EventEmitter<boolean>()
 
   _heroes: Hero[] = []
-  dataSource!: MatTableDataSource<Hero>
+  dataSource: MatTableDataSource<Hero> = new MatTableDataSource()
   filteredHeroes: Hero[] = []
   displayedColumns: string[] = ['name', 'height', 'superpower', 'actions']
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator
+  filterValue = ''
 
   constructor(private heroesService: HeroesService) { }
 
   applyFilter(event: Event) {
-    this.heroesService.findHeroes(event, this.dataSource)
+    this.filterValue = (event.target as HTMLInputElement).value
+    this.heroesService.findHeroes(this.filterValue, this.dataSource)
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage()
     }
@@ -59,7 +65,7 @@ export class TableComponent {
           this.onDeleteHero.emit(true)
           Swal.fire(
             '¡Eliminado!',
-            'El heroe fue eliminado exitosamente.',
+            'El heroe fue eliminado con éxito.',
             'success'
           )
         },

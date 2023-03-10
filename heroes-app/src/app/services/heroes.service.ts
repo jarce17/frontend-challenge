@@ -57,11 +57,9 @@ export class HeroesService {
     return this.http.delete(`${this.url}/${id}.json`)
   }
 
-  findHeroes(event: Event, dataSource: MatTableDataSource<Hero, MatTableDataSourcePaginator>){
-    const filterValue = (event.target as HTMLInputElement).value
+  findHeroes(filterValue: string, dataSource: MatTableDataSource<Hero, MatTableDataSourcePaginator>){
     dataSource.filterPredicate = (data: any) => {
-      const name = data.name.toLowerCase().includes(filterValue)
-      return name
+      return data.name.toLowerCase().includes(filterValue)
     }
     dataSource.filter = filterValue
   }

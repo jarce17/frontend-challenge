@@ -9,12 +9,13 @@ import { HttpClientModule } from '@angular/common/http'
 import { HeroesService } from './services/heroes.service'
 
 import { AppRoutingModule } from './app-routing.module'
-import { ComponentsModule } from './components/components.module'
+import { ComponentsModule } from './components/components.module';
 import { PagesModule } from './pages/pages.module'
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +23,9 @@ import { PagesModule } from './pages/pages.module'
     BrowserAnimationsModule,
     AppRoutingModule,
     ComponentsModule,
-    PagesModule
+    PagesModule,
+    BrowserModule,
+    SharedModule
   ],
   providers: [
     HeroesService

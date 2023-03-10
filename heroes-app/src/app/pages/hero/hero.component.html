@@ -6,7 +6,7 @@
     <form [hidden]="isLoading" [formGroup]="heroForm" (ngSubmit)="saveHeroe()">
         <mat-form-field appearance="fill">
             <mat-label>Nombre</mat-label>
-            <input matInput type="text" formControlName="name">
+            <input matInput upperCase type="text" formControlName="name">
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Superpoder</mat-label>

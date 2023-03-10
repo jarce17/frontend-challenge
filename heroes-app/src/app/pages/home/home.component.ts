@@ -1,8 +1,4 @@
 import { Component, ViewChild } from '@angular/core'
-import { MatPaginator } from '@angular/material/paginator'
-import { MatTableDataSource } from '@angular/material/table'
-
-import Swal from 'sweetalert2'
 
 import { HeroesService } from 'src/app/services/heroes.service'
 
@@ -29,7 +25,6 @@ export class HomeComponent {
     this.isLoading = true
     this.heroesService.getHeroes().subscribe((response) => {
       this.heroes = response
-      //this.heroesTable.setHeroes(this.heroes)
       this.isLoading = false
     })
   }

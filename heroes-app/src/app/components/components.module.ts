@@ -9,21 +9,25 @@ import { MatMenuModule } from '@angular/material/menu'
 import { MatTableModule } from '@angular/material/table'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatPaginatorModule } from '@angular/material/paginator'
+import { MatInputModule } from '@angular/material/input'
 
 import { LoaderComponent } from './loader/loader.component'
 import { HeaderComponent } from './header/header.component'
 import { FooterComponent } from './footer/footer.component'
 import { TableComponent } from './table/table.component'
+import { PaginatorComponent } from './paginator/paginator.component'
+import { SearcherComponent } from './searcher/searcher.component'
 
 import { AppRoutingModule } from '../app-routing.module'
-import { MatInputModule } from '@angular/material/input'
 
 @NgModule({
   declarations: [
     LoaderComponent,
     HeaderComponent,
     FooterComponent,
-    TableComponent
+    TableComponent,
+    PaginatorComponent,
+    SearcherComponent
   ],
   imports: [
     CommonModule,
@@ -36,13 +40,15 @@ import { MatInputModule } from '@angular/material/input'
     MatMenuModule,
     MatPaginatorModule,
     MatFormFieldModule,
-    MatInputModule,
+    MatInputModule
   ],
   exports: [
     LoaderComponent,
     HeaderComponent,
     FooterComponent,
-    TableComponent
+    TableComponent,
+    PaginatorComponent,
+    SearcherComponent
   ]
 })
 export class ComponentsModule { }
