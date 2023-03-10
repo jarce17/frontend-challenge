@@ -15,13 +15,12 @@ import { Hero } from 'src/app/models/hero'
   styleUrls: ['./table.component.css']
 })
 export class TableComponent {
-  @ViewChild(PaginatorComponent) paginatorTable!: PaginatorComponent
+  @ViewChild('paginatorTable') paginatorTable!: PaginatorComponent
 
   @Input() set heroes(array: Hero[]){
     this._heroes=array
     this.filteredHeroes = this._heroes
     this.dataSource = new MatTableDataSource<Hero>(this._heroes)
-    this.dataSource.paginator = this.paginatorTable.paginator
   }
   @Output() onDeleteHero = new EventEmitter<boolean>()
 

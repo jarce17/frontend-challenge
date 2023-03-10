@@ -61,6 +61,7 @@ export class HeroComponent {
     const hero = this.heroForm.value
     this.isLoading = true
     hero.id = this.id
+    hero.name = hero.name.toLocaleUpperCase()
     this.heroesService[this.isNewHero ? 'addHero' : 'updateHero'](hero).subscribe({
       complete: () => {
         this.isLoading = false
