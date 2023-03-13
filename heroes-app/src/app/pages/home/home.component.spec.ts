@@ -2,33 +2,18 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomeComponent } from './home.component';
 import { HeroesService } from '../../services/heroes.service';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { TableComponent } from '../../components/table/table.component';
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentsModule } from '../../components/components.module';
-import { PaginatorComponent } from '../../components/paginator/paginator.component';
 import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
-  //const service = new HeroesService(new HttpClient())
-
-  /* beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ HomeComponent ]
-    })
-    .compileComponents();
-
-    fixture = TestBed.createComponent(HomeComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-
-    //component = new HomeComponent(service)
-  }); */
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ComponentsModule, HttpClientModule, MatPaginatorModule],
+      imports: [ComponentsModule, HttpClientModule, MatPaginatorModule, BrowserAnimationsModule],
       declarations: [ HomeComponent, MatPaginator ],
       providers: [HeroesService]
     })

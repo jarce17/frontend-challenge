@@ -29,4 +29,4 @@
         <td class="mat-cell" colspan="4">No se encontraron coincidencias para "{{filterValue}}"</td>
     </tr>
 </table>
-<app-paginator></app-paginator>
+<app-paginator #paginatorTable [dataSource]="dataSource"></app-paginator>
